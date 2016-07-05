@@ -1,0 +1,48 @@
+package controllers
+
+import (
+	// "io/ioutil"
+	// "net/http"
+	// "os"
+	// "path"
+	"strings"
+
+	"github.com/astaxie/beego"
+    "badassblog/models"
+)
+
+type BaseController struct {
+	beego.Controller
+	Lang string
+
+	// static file cache support
+	// cacheFile   string
+	// cacheEnable bool
+	// cacheBody   []byte
+}
+
+func (bc *BaseController) Prepare() {
+	if bc.Lang = bc.Ctx.GetCookie("lang"); bc.Lang == "" {
+		bc.Lang = "zh-CN"
+	}
+	bc.Data["Lang"] = bc.Lang
+	bc.Data["I18n"] = models.I18ns[strings.ToLower(bc.Lang)]
+
+	// bc.cacheFile = path.Join(beego.AppConfig.DefaultString("cache_dir", "_cache"), bc.Lang, bc.Ctx.Input.URL())
+	// if !strings.HasSuffix(bc.cacheFile, ".html") {
+		// bc.cacheFile += ".html"
+	// }
+	// if fi, _ := os.Stat(bc.cacheFile); fi != nil && !fi.IsDir() {
+		// http.ServeFile(bc.Ctx.ResponseWriter, bc.Ctx.Request, bc.cacheFile)
+		// bc.StopRun()
+	// }
+
+	// bc.Layout = "layout.html"
+	// bc.setProperTemplateFile()
+
+	// bc.Data["Title"] = "Beego Website"
+	// bc.Data["HomeNav"] = models.HomeNav
+	// bc.Data["DocNav"] = models.DocNav
+	// bc.Data["Type"] = "page"
+}
+
