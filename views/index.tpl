@@ -58,8 +58,8 @@
         <div class="col-sm-8 blog-main">
    {{range .model}}
           <div class="blog-post">
-            <h2 class="blog-post-title">{{.Title}}</h2>
-            <p class="blog-post-meta">撰写时间{{.Createtime}} 作者 <a href="#">2009年的我</a></p>
+            <h2 class="blog-post-title"><a href="/article/{{.Id}}.html?{{urlfor "ArticleController",":id",".Id"}}">{{.Title}} </a></h2>
+            <p class="blog-post-meta">撰写时间{{.Createtime}} 作者{{urlfor "ArticleController",":id",".Id"}} <a href="#">2009年的我</a></p>
 
              {{ (sb .Content) }}
           </div><!-- /.blog-post -->
