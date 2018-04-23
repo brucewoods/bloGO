@@ -1,146 +1,110 @@
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <div id="main">
+      <a class="page-brand" href="/#open">
+        <img class="brand wow zoomIn" alt="Paul Laros" height="80" width="80" src="/static/img/avatar.jpg" style="visibility: visible; animation-name: zoomIn;">
+      </a>
 
-    <title>{{.model.Title}}_拾月博客</title>
+      <header class="parallax-window" data-parallax="scroll" data-image-src="/static/img/wall.jpg" data-speed="0.8"></header>
+    
+      <div id="content" class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <section class="post single wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+              <header>
+                <h1 class="title">
+                 {{.model.Title}}
+                </h1>
+                <p class="meta">
+                  <a class="auther" href="#/anthem1.1/author.html">Paul Laros</a> in <a class="collection" href="#/anthem1.1/collection.html">Travel</a> ● <a class="date" href="#/anthem1.1/date.html">April 13, 2015</a>
+                </p>
+              </header>
+              <div class="description">
+               {{str2html .model.Content}}
+     
+               <script> 
+               function loadsource() {
+    var script = document.createElement("script");
+    var link = document.createElement("link");
+    script.src = "/static/js/prism.js";
+    script.type = "text/javascript";
+    link.href="/static/css/prism.css";
+    link.rel="stylesheet"
+    document.getElementsByTagName("head")[0].appendChild(script);
+    document.getElementsByTagName("head")[0].appendChild(link);
+}
+  loadsource();
+           
+               </script>
+             
+               <pre><code class="language-css">p { color: red }</code></pre>
+               <pre data-line="2"><code class="language-go">
+                  package controllers
 
-    <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+                  import (
+                    m "badassblog/models"
+                    "fmt"
+                    "strconv"
+                  
+                    "github.com/astaxie/beego"
+                    "github.com/astaxie/beego/orm"
+                  )
+                  
+                  type ArticleController struct {
+                    beego.Controller
+                  }
+                  
+                  func (this *ArticleController) Get() {
+                  
+                    o := orm.NewOrm()
+                    id, _ := strconv.Atoi(this.Ctx.Input.Param(":id"))
+                    article := m.Article{Id: id}
+                    err := o.Read(&article)
+                    if err == orm.ErrNoRows {
+                      fmt.Println("查询不到")
+                    } else if err == orm.ErrMissPK {
+                      fmt.Println("找不到主键")
+                    } else {
+                      this.Data["model"] = article
+                    }
+                    this.Data["test"] = err
+                    this.Data["id"] = id
+                    this.Data["title"] = article.Title
+                    this.Layout = "nimda/layout.tpl"
+                  
+                  }
+                  
+               </code></pre>
+              </div>
+            </section>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+            <div id="disqus_thread"></div>
+            <script>
 
-    <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/blog/blog.css" rel="stylesheet">
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://feel-land.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                            
+            <footer class="footer">
+              <p class="text-muted">© Feel.Land 2018. All rights reserved</p>
+            </footer>
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+          </div><!-- /.col-md-10 .col-md-offset-1 -->
+        </div><!-- /.row -->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+      </div><!-- /#content -->
+    </div><!-- /#main -->
 
-  <body>
-
-    <div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Home</a>
-          <a class="blog-nav-item" href="#">New features</a>
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
-        </nav>
-      </div>
-    </div>
-
-    <div class="container">
-
-      <div class="blog-header">
-        <h1 class="blog-title">拾月博客</h1>
-        <p class="lead blog-description">月亮代表梦想吗?我是否该取名:朋朤朤(lang3).</p>
-      </div>
-
-      <div class="row">
-
-        <div class="col-sm-8 blog-main">
- 
-          <div class="blog-post">
-            <h2 class="blog-post-title">{{.model.Title}}</h2>
-            <p class="blog-post-meta">撰写时间{{.model.Createtime}} 作者 <a href="#">2009年的我</a></p>
-
-             {{ str2html  .model.Content}}
-          </div><!-- /.blog-post -->
-
-      
-
-        </div><!-- /.blog-main -->
-
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>关于About</h4>
-            <p>朋朤朤 <em>闽南人士</em> 喜欢电影,仅此而已</p>
-          </div>
-          <div class="sidebar-module">
-            <h4>正在发生</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-         
-            </ol>
-          </div>     <div class="sidebar-module">
-            <h4>今年发生</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
-            </ol>
-          </div>    <div class="sidebar-module">
-            <h4>我的往事</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Elsewhere</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
-
-      </div><!-- /.row -->
-
-    </div><!-- /.container -->
-
-    <footer class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
-    </footer>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="http://getbootstrap.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
