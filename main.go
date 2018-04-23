@@ -25,7 +25,7 @@ func init() {
 	//orm.RegisterModel(new(Article),new(User))
 	orm.RegisterModelWithPrefix("blog_", new(m.User), new(m.Article))
 	// set default database
-	orm.RegisterDataBase("default", "mysql", "sqluser:sqlname@/m10on_blog?charset=utf8", 30)
+	orm.RegisterDataBase("default", "mysql", "rmZYWTlc07n1yaet:SiBGmPTfauLmjdZA@/m10on_blog?charset=utf8", 30)
 }
 
 func main() {
