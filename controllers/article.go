@@ -2,6 +2,7 @@ package controllers
 
 import (
 	m "github.com/brucewoods/bloGO/models"
+	"github.com/brucewoods/bloGO/utils"
 
 	"fmt"
 	"strconv"
@@ -27,11 +28,13 @@ func (a *ArticleController) Get() {
 	} else if err == orm.ErrMissPK {
 		fmt.Println("找不到主键")
 	} else {
+		article.Content = utils.RenderMarkdown(article.Content)
 		a.Data["model"] = article
 	}
 	a.Data["test"] = err
 	a.Data["id"] = id
 	a.Data["title"] = article.Title
+
 	a.Layout = "nimda/layout.tpl"
 
 }

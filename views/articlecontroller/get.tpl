@@ -20,7 +20,7 @@
               </header>
               <div class="description">
                {{str2html .model.Content}}
-     
+             
                <script> 
                function loadsource() {
     var script = document.createElement("script");
