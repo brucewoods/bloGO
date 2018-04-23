@@ -3,9 +3,8 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/utils/pagination"
-	"github.com/beego/i18n"
 	// "strconv"
-	m "badassblog/models"
+	m "github.com/brucewoods/bloGO/models"
 
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
@@ -15,27 +14,6 @@ type MainController struct {
 	beego.Controller
 }
 
-//  substring  length you expect
-func MySubstring(in string) (out string) {
-	if len(in) > 300 {
-		out = in[:300] + "......"
-	} else {
-		out = in + "......"
-	}
-
-	return
-}
-
-func init() {
-	beego.AddFuncMap("i18n", i18n.Tr)
-	beego.AddFuncMap("sb", MySubstring)
-	// register model
-	//orm.RegisterModel(new(Article),new(User))
-	orm.RegisterModelWithPrefix("blog_", new(m.User), new(m.Article))
-	// set default database
-	orm.RegisterDataBase("default", "mysql", "badassblog:gotobadass1A@/m10on_blog?charset=utf8", 30)
-
-}
 func ListAtricleByOffsetAndLimit(i int, c int, isCount bool) (*[]*m.Article, int64) {
 	var articles []*m.Article
 	o := orm.NewOrm()

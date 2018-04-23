@@ -1,12 +1,34 @@
 package main
 
 import (
-	_ "badassblog/routers"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
+	"github.com/beego/i18n"
+	m "github.com/brucewoods/bloGO/models"
+	_ "github.com/brucewoods/bloGO/routers"
 )
+
+// MySubstring  substring  length you expect
+func MySubstring(in string) (out string) {
+	if len(in) > 300 {
+		out = in[:300] + "......"
+	} else {
+		out = in + "......"
+	}
+
+	return
+}
+func init() {
+	beego.AddFuncMap("i18n", i18n.Tr)
+	beego.AddFuncMap("sb", MySubstring)
+	// register model
+	//orm.RegisterModel(new(Article),new(User))
+	orm.RegisterModelWithPrefix("blog_", new(m.User), new(m.Article))
+	// set default database
+	orm.RegisterDataBase("default", "mysql", "sqluser:sqlname@/m10on_blog?charset=utf8", 30)
+}
 
 func main() {
 
 	beego.Run()
 }
- 

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	m "badassblog/models"
+	m "github.com/brucewoods/bloGO/models"
 
 	"fmt"
 	"strconv"
