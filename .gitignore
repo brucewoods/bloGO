@@ -1,2 +1,2 @@
 .vscode/
-controllers/default.go
+main.go
