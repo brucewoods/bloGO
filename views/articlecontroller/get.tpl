@@ -15,7 +15,7 @@
                  {{.model.Title}}
                 </h1>
                 <p class="meta">
-                  <a class="auther" href="#/anthem1.1/author.html">Paul Laros</a> in <a class="collection" href="#/anthem1.1/collection.html">Travel</a> ● <a class="date" href="#/anthem1.1/date.html">April 13, 2015</a>
+                  <a class="auther" href="#author.html">{{.model.Author}}</a> in <a class="collection" href="#collection.html">TECHONOLOGY</a> ● <a class="date" href="#date.html">{{.model.Createtime}}</a>
                 </p>
               </header>
               <div class="description">

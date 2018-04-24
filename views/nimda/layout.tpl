@@ -4,24 +4,14 @@
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Paul Laros">
-    <link rel="shortcut icon" href="https://paullaros.bitbucket.io/anthem1.1/favicon.ico">
 
-    <title>Feel.Land</title>
-
-    <!-- Fonts -->
-    <link href="/static/css/css.fonts.css" rel="stylesheet">
-    <!-- - Spring -->
+    <title>Feel.Land {{.tt}}</title>
+    <meta name="keywords" content="{{.qw}}">
+    <meta name="description" content="{{.ds}}">
+    <meta name="author" content="Feel Land">
+    <link rel="shortcut icon" href="">
     <link href="/static/css/css.spring.css" rel="stylesheet">
-    <!-- - Summer -->
-    <link href="/static/css/css.summer.css" rel="stylesheet">
-    <!-- - Winter -->
-    <link href="/static/css/css.winter.css" rel="stylesheet">
-    <!-- - Fall -->
-    <link href="/static/css/css.fall.css" rel="stylesheet">
-
-    <!-- Bootstrap core CSS -->
+   <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/font-awesome.min.css" rel="stylesheet">
     <link href="/static/css/animate.css" rel="stylesheet">

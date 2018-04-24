@@ -31,8 +31,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
 </head>
 <body>
-
-        <textarea id="demo1"></textarea>
+          <input type="hidden" name="Id" value="{{.model.Id}}" />
+          <input type="hidden" name="Createtime" value="{{.model.Createtime}}"  />
+          <input type="hidden" name="Lasttime" value="{{.model.Lasttime}}"  />
+          <input type="hidden" name="Author" value="{{.model.Author}}"  />
+        <textarea id="demo1"  ></textarea>
         <script>
                 var sim=new SimpleMDE({
                  element: document.getElementById("demo1"),
@@ -46,19 +49,34 @@
 			unique_id: "demo1",
 		}
              });
+             sim.value('{{.model.Title}} \r\n$$\r\n{{.model.Keywords}}\r\n$$\r\n{{.model.Description}}\r\n$$\r\n{{.model.Content}}');
              $(function(){
+            
+                $(document).on("keydown", "body", function(e)
+    {
+        if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey)
+        {
+           $('#commit').click();
+        }
+    });
                  $('#commit').click(function(){
-                     $.post('/backdoor',{content:sim.value()},function(rep){
-                         if(rep.ResponseText=="ok")
+                     var d=$('[name=Id]').val();
+                     var c=$('[name=Createtime]').val();
+                     var t=$('[name=Lasttime]').val();
+                     var a=$('[name=Author]').val();
+                
+
+                     $.post('/backdoor',{content:sim.value(),d:d,c:c,t:t,a:a},function(rep){
+                         if(rep=="ok")
                          {
                              alert("saved sucess!")
                          }
                      })
                  })
              })
-             
+               
                  </script>
-                 <div style="margin:0 auto;text-align: center"><button id="commit">Commit</button></div>
+                 <div style="margin:0 auto;text-align: center;display: none"><button id="commit" class="button">Commit</button></div>
 </body>
 
 </html>
