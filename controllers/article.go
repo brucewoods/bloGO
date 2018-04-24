@@ -57,6 +57,6 @@ func (a *ArticleController) About() {
 
 // Contact article get action
 func (a *ArticleController) Contact() {
-	common(55, a)
+	common(51, a)
 	a.TplName = "articlecontroller/get.tpl"
 }

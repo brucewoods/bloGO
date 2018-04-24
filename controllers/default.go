@@ -19,10 +19,10 @@ func ListAtricleByOffsetAndLimit(i int, c int, isCount bool) (*[]*m.Article, int
 	o := orm.NewOrm()
 
 	if isCount {
-		num, _ := o.QueryTable(m.Article{}).Filter("Id__gt", 49).All(&articles)
+		num, _ := o.QueryTable(m.Article{}).Filter("Id__gt", 51).All(&articles)
 		return &articles, num
 	} else {
-		num, _ := o.QueryTable(new(m.Article)).Filter("Id__gt", 49).OrderBy("-Id").All(&articles)
+		num, _ := o.QueryTable(new(m.Article)).Filter("Id__gt", 51).OrderBy("-Id").All(&articles)
 		return &articles, num
 	}
 

@@ -51,7 +51,8 @@
              });
              sim.value('{{.model.Title}} \r\n$$\r\n{{.model.Keywords}}\r\n$$\r\n{{.model.Description}}\r\n$$\r\n{{.model.Content}}');
              $(function(){
-            
+                $('[title*=F11]').click()
+                $('[title*=F9]').click()
                 $(document).on("keydown", "body", function(e)
     {
         if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey)
