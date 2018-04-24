@@ -11,7 +11,9 @@ func init() {
 	beego.Router("/page/:p", &controllers.MainController{})
 	beego.Router("/article/:id.html", &controllers.ArticleController{})
 	beego.Router("/search/:flag(_):keword", &controllers.SearchController{})
+	beego.Router("/backdoor", &controllers.BackdoorController{})
 	beego.AutoRouter(&controllers.MainController{})
 	beego.AutoRouter(&controllers.ArticleController{})
 	beego.AutoRouter(&controllers.SearchController{})
+	beego.AutoRouter(&controllers.BackdoorController{})
 }
